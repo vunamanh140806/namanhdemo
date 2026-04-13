@@ -1,0 +1,64 @@
+/* static/css/style.css */
+:root {
+    --primary-color: #28a745; /* Vàng đất: Earthy Yellow / Green? Wait. User: trắng, xanh lá, vàng đất */
+    --secondary-color: #d4a373; /* Vàng đất (Earthy yellow) */
+    --background-color: #ffffff; /* Trắng (White) */
+    --text-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom Overrides for Bootstrap elements */
+.navbar-custom {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: var(--background-color) !important;
+}
+
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--background-color);
+}
+.btn-primary-custom:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: var(--background-color);
+}
+
+.btn-secondary-custom {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--background-color);
+}
+.btn-secondary-custom:hover {
+    background-color: #c7925e;
+    border-color: #c7925e;
+    color: var(--background-color);
+}
+
+.card-custom {
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.text-primary-custom {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary-custom {
+    color: var(--secondary-color) !important;
+}

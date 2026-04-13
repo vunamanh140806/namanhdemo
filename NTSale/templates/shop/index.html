@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Trang chủ - NTSale{% endblock %}
+
+{% block content %}
+<div class="row align-items-center mb-5">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold text-primary-custom">Chào mừng đến với NTSale</h1>
+        <p class="lead text-muted">Hệ thống mua sắm trực tuyến hàng đầu. Khám phá những sản phẩm mới nhất với chất lượng tốt nhất.</p>
+        <a href="#" class="btn btn-primary-custom btn-lg">Mua sắm ngay</a>
+    </div>
+    <div class="col-lg-6">
+        <!-- Placeholder for a hero image -->
+        <div class="bg-light rounded p-5 text-center shadow-sm border" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+            <span class="text-muted">Hình ảnh minh họa</span>
+        </div>
+    </div>
+</div>
+
+<h2 class="h3 mb-4 text-center">Sản phẩm nổi bật</h2>
+<div class="row g-4">
+    {% for product in products %}
+    <div class="col-md-4">
+        <div class="card card-custom h-100">
+            <div class="card-img-top bg-light" style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                <span class="text-muted">Ảnh sản phẩm</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-primary-custom">{{ product.ProductName }}</h5>
+                <p class="card-text">
+                    <strong>Danh mục:</strong> {{ product.Category.CategoryName }}<br>
+                    <strong>Hãng:</strong> {{ product.Supplier.CompanyName }}<br>
+                    <strong>Tồn kho:</strong> {{ product.UnitsInStock }}<br>
+                    {% if product.Discontinued %}
+                        <span class="badge bg-danger">Ngưng kinh doanh</span>
+                    {% else %}
+                        <span class="badge bg-success">Đang kinh doanh</span>
+                    {% endif %}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        {% if product.OldPrice and product.discount_percentage > 0 %}
+                            <small class="text-muted text-decoration-line-through">{{ product.OldPrice|currency_vn }}</small>
+                            <span class="badge bg-danger ms-1">-{{ product.discount_percentage }}%</span>
+                            <br>
+                        {% endif %}
+                        <span class="fw-bold fs-5 text-secondary-custom">
+                            {% if product.UnitPrice %}{{ product.UnitPrice|currency_vn }}{% else %}Liên hệ{% endif %}
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-outline-success btn-sm {% if product.Discontinued %}disabled{% endif %}">Thêm vào giỏ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center text-muted border p-5 bg-light rounded">
+        Vui lòng truy cập trang Quản Trị (/admin) để thêm các Sản phẩm đầu tiên vào cơ sở dữ liệu!
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
